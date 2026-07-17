@@ -1,0 +1,45 @@
+{
+  "entities": {
+    "achievement": {
+      "title": "Achievement",
+      "description": "Student achievement record",
+      "type": "object",
+      "properties": {
+        "namaSiswa": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Student's full name"
+        },
+        "jenisPrestasi": {
+          "type": "string",
+          "enum": ["Akademik", "Olahraga", "Seni", "Keagamaan", "Non-Akademik", "Lainnya"],
+          "description": "Category of the achievement"
+        },
+        "tanggal": {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+          "description": "Date of the achievement in YYYY-MM-DD format"
+        },
+        "deskripsi": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000,
+          "description": "Description of the achievement"
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the record was created"
+        }
+      },
+      "required": ["namaSiswa", "jenisPrestasi", "tanggal", "deskripsi"]
+    }
+  },
+  "firestore": {
+    "achievements/{achievementId}": {
+      "schema": "achievement",
+      "description": "Global list of student achievements"
+    }
+  }
+}
